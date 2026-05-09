@@ -1,1 +1,172 @@
+        :root {
+            --bg: #0a0a0a;
+            --surface: #121212;
+            --border: #262626;
+            --accent: #ff3e3e; 
+            --text-main: #e6e6e6;
+            --text-dim: #888;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
 
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-mono), ui-monospace;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 280px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 32px;
+            color: var(--accent);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            transition: 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(255, 62, 62, 0.2);
+        }
+
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-size: 0.85rem;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        .cat-item {
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+            transition: 0.2s;
+            color: var(--text-dim);
+        }
+
+        .cat-item:hover, .cat-item.active {
+            background: var(--border);
+            color: var(--text-main);
+        }
+
+        /* --- MAIN GRID --- */
+        .main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            scroll-behavior: smooth;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 62, 62, 0.1);
+        }
+
+        .card b { display: block; margin-bottom: 8px; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card small { color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- THE DRAWER (VIDEO PLAYER) --- */
+        #preview {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 450px;
+            height: 100%;
+            background: var(--surface);
+            border-left: 1px solid var(--border);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            padding: 40px 30px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #preview.active { right: 0; }
+
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        video { width: 100%; height: 100%; }
+
+        .btn-close {
+            color: var(--accent);
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+        }
+
+        .status-tag {
+            display: inline-block;
+            padding: 4px 8px;
+            background: rgba(255, 62, 62, 0.1);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-bottom: 15px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
